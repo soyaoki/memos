@@ -1,0 +1,20 @@
+(1)/Autoware-Jetson/docker/src-ros/docker/src
+
+RUN useradd -m $USER_NAME
+RUN echo "$USER_NAME:$USER_NAME" | chpasswd
+RUN usermod --shell /bin/bash $USER_NAME
+RUN usermod -aG sudo $USER_NAME
+#RUN echo "$USER_NAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USER_NAME
+#RUN chmod 0440 /etc/sudoers.d/$USER_NAME
+RUN usermod  --uid $HOST_USER $USER_NAME
+RUN groupmod --gid $HOST_USER $USER_NAME
+RUN gpasswd -a $USER_NAME video
+
+
+manuallly add user "ros" and comment out above line.
+
+(2)Update to CMake>= 3.12.3
+
+and recompile.
+
+(3)Downgrade Jetpack to 4.2.3

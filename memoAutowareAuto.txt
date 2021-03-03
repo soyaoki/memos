@@ -1,0 +1,11 @@
+git lfs pull --exclude="" --include="*"
+
+--add autoware.auto.dashing.repos following:
+ src/external/acado_vendor:
+    type: git
+    url: https://gitlab.com/autowarefoundation/autoware.auto/acado_vendor.git
+    version: 1.0.0
+
+vcs import < autoware.auto.$ROS_DISTRO.repos
+
+colcon build
